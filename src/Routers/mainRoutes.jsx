@@ -9,6 +9,7 @@ import Generate from "../pages/Generate";
 import PaintingDetails from "../pages/PaintingDetails";
 import Paintings from "../pages/Paintings";
 import Replies from "../pages/Replies";
+import baseUrl from "../baseUrl/baseUrl.js";
 
 const mainRoutes = createBrowserRouter([
   {
@@ -27,7 +28,7 @@ const mainRoutes = createBrowserRouter([
       {
         path: "paintings",
         element: <Paintings></Paintings>,
-        loader: () => fetch("http://localhost:5000/paintings"),
+        loader: () => fetch(`${baseUrl}/paintings`),
       },
       {
         path: "generate",
@@ -44,8 +45,7 @@ const mainRoutes = createBrowserRouter([
             <PaintingDetails></PaintingDetails>
           </PrivateRoute>
         ),
-        loader: ({ params }) =>
-          fetch(`http://localhost:5000/paintings/${params.id}`),
+        loader: ({ params }) => fetch(`${baseUrl}/paintings/${params.id}`),
       },
       {
         path: "replies",
