@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import PaintingCard from "../components/PaintingCard";
 import axios from "axios";
+import baseUrl from "../baseUrl/baseUrl.js";
 
 const Paintings = () => {
   // Initialize local state with the data from the loader
@@ -11,7 +12,7 @@ const Paintings = () => {
   // Function to handle delete action
   const handleDelete = async (id) => {
     try {
-      const res = await axios.delete(`http://localhost:5000/paintings/${id}`);
+      const res = await axios.delete(`${baseUrl}/paintings/${id}`);
       if (res.data.status === "success") {
         setPaintings((prevPaintings) =>
           prevPaintings.filter((painting) => painting._id !== id)

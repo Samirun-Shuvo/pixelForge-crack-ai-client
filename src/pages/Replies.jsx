@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import baseUrl from "../baseUrl/baseUrl.js";
 
 const Replies = () => {
   const [messages, setMessages] = useState([]);
@@ -8,7 +9,7 @@ const Replies = () => {
     e.preventDefault();
     if (input) {
       setMessages([...messages, { sender: "user", text: input }]);
-      const response = await fetch("http://localhost:5000/paintings/replies", {
+      const response = await fetch(`${baseUrl}/paintings/replies`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: input }),

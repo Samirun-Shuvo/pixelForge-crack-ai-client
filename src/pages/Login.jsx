@@ -7,7 +7,6 @@ import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { data } from "autoprefixer";
 
 import loginAnimation from "../assets/loginAnimation.json";
 
@@ -27,13 +26,6 @@ const Login = () => {
       .then((res) => {
         const user = res.user;
         alert("successfull");
-        // axios
-        //   .post(
-        //     "https://chef-note-server.vercel.app/jwt",
-        //     { email },
-        //     { withCredentials: true }
-        //   )
-        //   .then((data) => console.log(data));
 
         axios
           .post(
@@ -45,19 +37,6 @@ const Login = () => {
             navigate(`${location.state ? location.state : "/"}`);
             console.log(res.data);
           });
-
-        // fetch("https://chef-note-server.vercel.app/jwt", {
-        //   method: "POST",
-        //   credentials: "include",
-        //   headers: {
-        //     "content-type": "application/json",
-        //   },
-        //   body: JSON.stringify({ email: email }),
-        // })
-        //   .then((res) => res.json())
-        //   .then((data) => console.log(data));
-
-        // navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((err) => {
         console.log(err);

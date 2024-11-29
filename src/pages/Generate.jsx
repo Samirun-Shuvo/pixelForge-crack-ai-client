@@ -5,6 +5,7 @@ import axios from "axios";
 import Title from "../components/Title";
 import Loading from "./Loading";
 import { AuthContext } from "../providers/AuthProvider";
+import baseUrl from "../baseUrl/baseUrl.js";
 
 const Generate = () => {
   const { user } = useContext(AuthContext);
@@ -83,6 +84,7 @@ const Generate = () => {
     return true;
   };
 
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -93,15 +95,12 @@ const Generate = () => {
     setLoading(true);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/paintings/generate",
-        {
-          prompt,
-          type: activeType,
-          category: activeCategory,
-          email: user?.email,
-        }
-      );
+      const response = await axios.post(`${baseUrl}/paintings/generate`, {
+        prompt,
+        type: activeType,
+        category: activeCategory,
+        email: user?.email,
+      });
 
       if (response?.data?.insertedId) {
         Swal.fire("Success", "Painting generated", "success");
